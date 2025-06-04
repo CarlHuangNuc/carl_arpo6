@@ -1,3 +1,5 @@
+notices:: transformers==4.51.0
+
 
 # ARPO: End-to-End Policy Optimization for GUI Agents with Experience Replay
 
