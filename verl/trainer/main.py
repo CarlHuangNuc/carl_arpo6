@@ -14,7 +14,7 @@
 """
 Note that we don't combine the main with ray_trainer as ray_trainer is used by other main.
 """
-
+import os
 import json
 
 import ray
@@ -28,7 +28,7 @@ from .config import PPOConfig
 from .ray_trainer import RayPPOTrainer, ResourcePoolManager, Role
 
 
-@ray.remote(num_cpus=1)
+@ray.remote(num_cpus=1, resources={"docker:10.10.20.145": 1})
 class Runner:
     """A runner for RL training."""
 
@@ -95,11 +95,12 @@ def main():
 
     ppo_config = OmegaConf.merge(default_config, cli_args)
     ppo_config = OmegaConf.to_object(ppo_config)
-
+    
+    conda_env_path = "/home/lenovo/.conda/envs/arpo"
+    os.environ["RAY_PYTHON_EXECUTABLE"] = "/home/lenovo/.conda/envs/arpo/bin/python"
     if not ray.is_initialized():
         # this is for local ray cluster
-        ray.init(runtime_env={"env_vars": {"TOKENIZERS_PARALLELISM": "true", "NCCL_DEBUG": "WARN"}})
-    
+        ray.init(runtime_env={"conda": "arpo", "env_vars": {"TOKENIZERS_PARALLELISM": "true", "NCCL_DEBUG": "WARN"}})
     print(ray.cluster_resources().keys())
 
     runner = Runner.remote()
