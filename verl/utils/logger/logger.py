@@ -83,17 +83,23 @@ class TensorBoardLogger(Logger):
 
 class WandbLogger(Logger):
     def __init__(self, config: Dict[str, Any]) -> None:
+        '''
         wandb.init(
             project=config["trainer"]["project_name"],
             name=config["trainer"]["experiment_name"],
             config=config,
         )
+        '''
+        print("carl wandb init")
 
     def log(self, data: Dict[str, Any], step: int) -> None:
-        wandb.log(data=data, step=step)
+        #wandb.log(data=data, step=step)
+        print("carl wandb log")
 
     def finish(self) -> None:
-        wandb.finish()
+        
+        #wandb.finish()
+        print("carl wandb finished ")
 
 
 class SwanlabLogger(Logger):
