@@ -150,6 +150,9 @@ On **Ray master node**:
 ```bash
 RAY_PORT=2468
 RAY_HEAD_IP=<Your IP>
+
+PORT =3691 same ok to us ...
+
 ray start --head --port=$RAY_PORT --resources='{"docker:'$RAY_HEAD_IP'": 128}'
 ```
 
