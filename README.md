@@ -3,6 +3,12 @@ notices:: transformers==4.51.0
 
 ray port :::3691
 
+
+docker stop $(docker ps -q) && docker rm $(docker ps -a -q)
+
+
+
+
 # ARPO: End-to-End Policy Optimization for GUI Agents with Experience Replay
 
 This repository contains the code and models for the paper:
