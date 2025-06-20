@@ -7,6 +7,8 @@ ray port :::3691
 docker stop $(docker ps -q) && docker rm $(docker ps -a -q)
 
 
+训练的过程中需要，确保系统的ray 版本一致pip install 2.46.，
+python 版本不一致，可以先忽略。。。
 
 
 # ARPO: End-to-End Policy Optimization for GUI Agents with Experience Replay
